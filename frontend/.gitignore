@@ -1,0 +1,5 @@
+# Environment variables and secrets
+node_modules/
+.env
+package-lock.json
+*test.py

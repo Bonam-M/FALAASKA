@@ -1,0 +1,7 @@
+__pycache__/
+database_export*/
+.env
+*.pyc
+*test.py
+*.csv
+alaaska_env/*
