@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from openai import AsyncOpenAI
 import re
-from backend.config import OPENAI_API_KEY, SUMMARIZE_MODEL_ID
+from app.config import OPENAI_API_KEY, SUMMARIZE_MODEL_ID
 
 client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 

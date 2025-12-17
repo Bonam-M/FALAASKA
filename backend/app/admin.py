@@ -1,6 +1,6 @@
 from fastapi import Depends, HTTPException
-from backend.auth import get_current_user
-from backend.db_mongo import users_collection
+from app.auth import get_current_user
+from app.db_mongo import users_collection
 
 
 async def is_admin(user: dict = Depends(get_current_user)) -> bool:

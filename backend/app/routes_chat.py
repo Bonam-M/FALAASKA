@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials
-from backend.auth import get_current_user, http_bearer
-from backend.models import ChatRequest
-from backend.db_mongo import conversations_collection
-from backend.db_assignments import student_assignments_collection
-from backend.config import OPENAI_API_KEY, MODEL_ID, SUMMARIZE_MODEL_ID
+from app.auth import get_current_user, http_bearer
+from app.models import ChatRequest
+from app.db_mongo import conversations_collection
+from app.db_assignments import student_assignments_collection
+from app.config import OPENAI_API_KEY, MODEL_ID, SUMMARIZE_MODEL_ID
 from openai import AsyncOpenAI
 from datetime import datetime, timezone
 import uuid
@@ -118,7 +118,7 @@ async def get_conversation(
 
         #  For grader view, find the student who owns this conversation
         if is_grader and conversation.get("user_id") != user_id:
-            from backend.db_mongo import users_collection
+            from app.db_mongo import users_collection
             conversation_owner = await users_collection.find_one({"auth0_id": conversation.get("user_id")})
             if conversation_owner:
                 user_email = conversation_owner["email"].lower()

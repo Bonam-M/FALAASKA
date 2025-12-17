@@ -1,6 +1,6 @@
 from fastapi import HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from backend.config import FRONTEND_URL
+from app.config import FRONTEND_URL
 
 def get_cors_middleware():
     """Configure CORS middleware"""

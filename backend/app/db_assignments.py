@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from backend.db_mongo import db, mongo_client
+from app.db_mongo import db, mongo_client
 from pymongo import ASCENDING, DESCENDING
 import logging
 

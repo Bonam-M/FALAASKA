@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
-from backend.auth import get_current_user, http_bearer
+from app.auth import get_current_user, http_bearer
 from fastapi.security import HTTPAuthorizationCredentials
-from backend.admin import require_admin
-from backend.models_assignments import (
+from app.admin import require_admin
+from app.models_assignments import (
     CreateTemplateRequest, 
     CreateAssignmentRequest, 
     UpdateTemplateRequest,
@@ -14,18 +14,18 @@ from backend.models_assignments import (
     SubmitQuizAnswerRequest,
     UpdateSubmissionSettingsRequest
 )
-from backend.db_assignments import (
+from app.db_assignments import (
     templates_collection,
     assignments_collection,
     student_assignments_collection,
     quiz_templates_collection,
     student_quiz_responses_collection
 )
-from backend.db_mongo import conversations_collection, users_collection
+from app.db_mongo import conversations_collection, users_collection
 from datetime import datetime, timezone
 import uuid
 from fastapi.responses import StreamingResponse
-from backend.pdf_generator import create_gradescope_pdf
+from app.pdf_generator import create_gradescope_pdf
 from typing import Optional, List
 
 router = APIRouter()
@@ -319,7 +319,7 @@ async def export_assignment_pdf(
         if not students_data:
             raise HTTPException(status_code=404, detail="No submissions found for this assignment")
         
-        from backend.config import FRONTEND_URL
+        from app.config import FRONTEND_URL
         base_url = FRONTEND_URL if hasattr(FRONTEND_URL, '__str__') else "http://localhost:3000"
         
         # Generate PDF with base_url

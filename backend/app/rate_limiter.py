@@ -2,7 +2,7 @@ from fastapi import HTTPException, Request, Depends
 from collections import defaultdict
 from typing import Dict, List
 import time
-from backend.auth import get_current_user
+from app.auth import get_current_user
 
 rate_limit_storage: Dict[str, List[float]] = defaultdict(list)
 

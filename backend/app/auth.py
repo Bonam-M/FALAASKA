@@ -4,8 +4,8 @@ from jose import jwt
 from datetime import datetime, timezone
 import httpx
 import requests
-from backend.db_mongo import users_collection
-from backend.config import AUTH0_DOMAIN, AUTH0_API_AUDIENCE, ALGORITHM
+from app.db_mongo import users_collection
+from app.config import AUTH0_DOMAIN, AUTH0_API_AUDIENCE, ALGORITHM
 import logging
 from typing import Optional
 from functools import lru_cache

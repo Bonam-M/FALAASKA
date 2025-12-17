@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from datetime import datetime, timezone
-from backend.admin import require_admin
-from backend.auth import get_current_user, http_bearer
+from app.admin import require_admin
+from app.auth import get_current_user, http_bearer
 from fastapi.security import HTTPAuthorizationCredentials
-from backend.models import AddAdminRequest, RemoveAdminRequest, AddGraderRequest, RemoveGraderRequest
-from backend.db_mongo import users_collection
+from app.models import AddAdminRequest, RemoveAdminRequest, AddGraderRequest, RemoveGraderRequest
+from app.db_mongo import users_collection
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
