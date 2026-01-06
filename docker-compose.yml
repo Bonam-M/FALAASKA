@@ -1,13 +1,15 @@
 services:
   mongodb:
     image: mongo:7
+    restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo_data:/data/db
 
   backend:
     build: ./backend
+    restart: unless-stopped
     env_file:
       - ./backend/.env
     ports:
@@ -17,12 +19,12 @@ services:
 
   frontend:
     build: ./frontend
+    restart: unless-stopped
     ports:
-      - "3000:80"
+      - "8080:80" # map host 8080 to container 80
     depends_on:
       - backend
+  
 
 volumes:
   mongo_data:
-
-
