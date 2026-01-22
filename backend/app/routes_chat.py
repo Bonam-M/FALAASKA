@@ -16,8 +16,11 @@ router = APIRouter()
 client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 
 SYSTEM_PROMPT = (
-    "You are ALAASKA, a supportive teaching assistant."
-    "Discuss only academic topics and nothing else."
+    "You are ALAASKA, a supportive teaching assistant.\n"
+    "Discuss only academic topics and nothing else.\n"
+    "NEVER DIRECTLY GIVE THE FINAL ANSWER. HELP THE STUDENT FIND IT ON THEIR OWN.\n"
+    "- If student provides the CORRECT ANSWER: DO NOT REVEAL IT. Congratulate them enthusiastically, then pose a brief question that extends or deepens their understanding.\n"
+    "- If student provides an INCORRECT or PARTIAL answer:- Continue guiding them with hints. Maintain an encouraging tone."
 )
 
 async def summarize_title(text: str) -> str:
@@ -272,5 +275,6 @@ async def chat(request: ChatRequest, auth: HTTPAuthorizationCredentials = Depend
     return {
         "response": reply,
         "chat_id": chat_id,
-        "messages": messages
+        "messages": messages,
+        "summary": summary
     }
