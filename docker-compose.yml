@@ -6,7 +6,7 @@ services:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
-
+  
   backend:
     build: ./backend
     restart: unless-stopped
@@ -16,15 +16,16 @@ services:
       - "8000:8000"
     depends_on:
       - mongodb
-
+    volumes:
+      - ./backend:/app/backend  # Syncs only the backend folder
+  
   frontend:
     build: ./frontend
     restart: unless-stopped
     ports:
-      - "8080:80" # map host 8080 to container 80
+      - "8080:80"
     depends_on:
       - backend
-  
 
 volumes:
   mongo_data:
