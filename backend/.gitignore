@@ -1,5 +1,7 @@
 __pycache__/
 base_export*/
+base_data*/
+base_conversations*/
 user_export*/
 .env
 *.pyc
